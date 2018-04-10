@@ -2,7 +2,7 @@
 
 * Overview of dataset
 
-The data was obtained from http://portals.broadinstitute.org/cgi-bin/cancer/publications/view/43 and is stored as follows:
+The data was obtained from [[http://portals.broadinstitute.org/cgi-bin/cancer/publications/view/43][the Broad Institute]] and is stored as follows:
 
 | Type of data               | File name                            |
 |----------------------------+--------------------------------------|
