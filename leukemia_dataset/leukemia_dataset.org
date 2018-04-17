@@ -11,7 +11,6 @@ The data was obtained from [[http://portals.broadinstitute.org/cgi-bin/cancer/pu
 | Testing data               | ~data_set_ALL_AML_independent.txt~   |
 | Testing data class labels  | ~Leuk_ALL_AML.test.cls~              |
 
-
 * Cleaning the data
 
 #+BEGIN_SRC ipython
@@ -27,7 +26,6 @@ def clean_training_data():
 
 clean_training_data()
 #+END_SRC
-
 
 * Loading the data
 
@@ -64,3 +62,51 @@ clean_training_data()
 #+RESULTS:
 : # Out[9]:
 
+* Run models
+
+To choose the $\gamma$ function of the RBF kernel (where $\gamma = 1/(2\sigma^2)$) we follow the heuristic choice mentioned in Gretton et al. (p. 748) of setting $\sigma$ to equal the median distance between points of the training data.
+
+#+BEGIN_SRC ipython
+import sklearn.linear_model
+import sklearn.kernel_ridge
+import sklearn.metrics.pairwise
+from sklearn.metrics import confusion_matrix
+from scipy.spatial.distance import cdist
+import statistics
+
+# Calculate gamma as in Gretton et al.
+b = cdist(x_train, x_train).ravel()
+gamma = 1/(2 * pow(statistics.median(b), 2))
+
+#y_test_onehot = numpy.zeros((len(y_test), 2))
+#y_test_onehot[numpy.arange(len(y_test)), y_test.astype(int)] = 1
+
+# Calculate RBF kernel 
+K      = sklearn.metrics.pairwise.rbf_kernel(x_train, x_train, gamma=gamma)
+K_test = sklearn.metrics.pairwise.rbf_kernel(x_test, x_train, gamma=gamma)
+
+# Fit kernelized logistic regression
+# (note that l2 regularization is applied by default)
+clf = sklearn.linear_model.LogisticRegression(solver='lbfgs')
+clf.fit(K, y_train)
+kernelized_l2_preds = clf.predict(K_test)
+
+# Fit kernelized logistic regression with l1 regularization
+# (note that liblinear solver used by default)
+clf = sklearn.linear_model.LogisticRegression(penalty='l1')
+clf.fit(K, y_train)
+kernelized_l1_preds = clf.predict(K_test)
+
+# Fit non-kernelized logistic regression with l1 regularization
+clf = sklearn.linear_model.LogisticRegression(penalty='l1')
+clf.fit(x_train, y_train)
+l1_preds = clf.predict(x_test)
+#+END_SRC
+
+(TODO: evaluate the above results)
+
+(TODO: add grid search for SVM parameters)
+
+* References (move to separate file later)
+
+Gretton, Arthur et al. 2012. "A Kernel Two-Sample Test." /Journal of Machine Learning Research/. Vol 13, p. 723-773.
