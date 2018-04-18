@@ -30,37 +30,37 @@ clean_training_data()
 * Loading the data
 
 #+BEGIN_SRC ipython
-  import numpy, scipy, pandas
-  import sklearn
-  import re
+import numpy, scipy, pandas
+import sklearn
+import re
 
-  def load_data(x_filename, y_filename):
-      df_x = pandas.read_csv(x_filename, sep="\t")
-      df_x = df_x.select(lambda x: not re.search('call\.*', x), axis=1)
-      df_x = df_x.drop(['Gene Description', 
-                        'Gene Accession Number'], axis=1)
-      df_x = df_x.T
-      x = df_x.values
+def load_data(x_filename, y_filename):
+    df_x = pandas.read_csv(x_filename, sep="\t")
+    df_x = df_x.select(lambda x: not re.search('call\.*', x), axis=1)
+    df_x = df_x.drop(['Gene Description', 
+                      'Gene Accession Number'], axis=1)
+    df_x = df_x.T
+    x = df_x.values
 
-      with open(y_filename, "r") as fin:
-          data = fin.read().splitlines(True)
-      data = data[1].rstrip()
+    with open(y_filename, "r") as fin:
+        data = fin.read().splitlines(True)
+    data = data[1].rstrip()
 
-      y = numpy.fromstring(data, sep=" ")
+    y = numpy.fromstring(data, sep=" ")
 
-      return x, y
+    return x, y
 
 
-  x_train, y_train = load_data("data_set_ALL_AML_train_cleaned.txt",
-                               "ALL_vs_AML_train_set_38_sorted.cls")
-  x_test, y_test = load_data("data_set_ALL_AML_independent.txt",
-                             "Leuk_ALL_AML.test.cls")
-  y_test = y_test[1:]  # dataset has one additional 0 at beginning, 
-                       # so remove it
+x_train, y_train = load_data("data_set_ALL_AML_train_cleaned.txt",
+                             "ALL_vs_AML_train_set_38_sorted.cls")
+x_test, y_test = load_data("data_set_ALL_AML_independent.txt",
+                           "Leuk_ALL_AML.test.cls")
+y_test = y_test[1:]  # dataset has one additional 0 at beginning, 
+                     # so remove it
 #+END_SRC
 
 #+RESULTS:
-: # Out[9]:
+: # Out[3]:
 
 * Run models
 
@@ -73,6 +73,8 @@ import sklearn.metrics.pairwise
 from sklearn.metrics import confusion_matrix
 from scipy.spatial.distance import cdist
 import statistics
+
+import tabulate
 
 # Calculate gamma as in Gretton et al.
 b = cdist(x_train, x_train).ravel()
@@ -103,6 +105,9 @@ clf.fit(x_train, y_train)
 l1_preds = clf.predict(x_test)
 #+END_SRC
 
+#+RESULTS:
+: # Out[4]:
+
 ** Evaluation of results
 
 #+BEGIN_SRC ipython
@@ -116,6 +121,25 @@ kernelized_l2_cm = confusion_matrix(y_test, kernelized_l2_preds)
 kernelized_l1_cm = confusion_matrix(y_test, kernelized_l1_preds)
 l1_cm = confusion_matrix(y_test, l1_preds)
 #+END_SRC
+
+#+RESULTS:
+: # Out[5]:
+
+#+BEGIN_SRC ipython
+from IPython.display import HTML, display
+import tabulate
+
+table = [["Kernelized L2", kernelized_l2_er],
+         ["Kernelized L1", kernelized_l1_er],
+         ["L1", l1_er]]
+
+display(HTML(tabulate.tabulate(table, tablefmt='html')))
+#+END_SRC
+
+#+RESULTS:
+: # Out[7]:
+: : <IPython.core.display.HTML object>
+
 
 (TODO: add grid search for SVM parameters)
 

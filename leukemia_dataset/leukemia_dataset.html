@@ -11934,6 +11934,8 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="k">import</span> <span class="n">cdist</span>
 <span class="kn">import</span> <span class="nn">statistics</span>
 
+<span class="kn">import</span> <span class="nn">tabulate</span>
+
 <span class="c1"># Calculate gamma as in Gretton et al.</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">cdist</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_train</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">pow</span><span class="p">(</span><span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="mi">2</span><span class="p">))</span>
@@ -11990,6 +11992,26 @@ div#notebook {
 <span class="n">kernelized_l2_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">kernelized_l2_preds</span><span class="p">)</span>
 <span class="n">kernelized_l1_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">kernelized_l1_preds</span><span class="p">)</span>
 <span class="n">l1_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">l1_preds</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">tabulate</span>
+
+<span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Kernelized L2&quot;</span><span class="p">,</span> <span class="n">kernelized_l2_er</span><span class="p">],</span>
+         <span class="p">[</span><span class="s2">&quot;Kernelized L1&quot;</span><span class="p">,</span> <span class="n">kernelized_l1_er</span><span class="p">],</span>
+         <span class="p">[</span><span class="s2">&quot;L1&quot;</span><span class="p">,</span> <span class="n">l1_er</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">))))</span>
 </pre></div>
 
 </div>
