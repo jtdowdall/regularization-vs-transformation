@@ -103,7 +103,19 @@ clf.fit(x_train, y_train)
 l1_preds = clf.predict(x_test)
 #+END_SRC
 
-(TODO: evaluate the above results)
+** Evaluation of results
+
+#+BEGIN_SRC ipython
+from sklearn.metrics import zero_one_loss
+
+kernelized_l2_er = zero_one_loss(y_test, kernelized_l2_preds)
+kernelized_l1_er = zero_one_loss(y_test, kernelized_l1_preds)
+l1_er = zero_one_loss(y_test, l1_preds)
+
+kernelized_l2_cm = confusion_matrix(y_test, kernelized_l2_preds)
+kernelized_l1_cm = confusion_matrix(y_test, kernelized_l1_preds)
+l1_cm = confusion_matrix(y_test, l1_preds)
+#+END_SRC
 
 (TODO: add grid search for SVM parameters)
 
