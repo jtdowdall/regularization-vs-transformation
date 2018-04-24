@@ -74,7 +74,7 @@ from sklearn.metrics import confusion_matrix
 from scipy.spatial.distance import cdist
 import statistics
 
-import tabulate
+#import tabulate
 
 # Calculate gamma as in Gretton et al.
 b = cdist(x_train, x_train).ravel()
@@ -127,13 +127,29 @@ l1_cm = confusion_matrix(y_test, l1_preds)
 
 #+BEGIN_SRC ipython
 from IPython.display import HTML, display
-import tabulate
 
-table = [["Kernelized L2", kernelized_l2_er],
-         ["Kernelized L1", kernelized_l1_er],
-         ["L1", l1_er]]
+results_df = pandas.DataFrame(columns=('Model', 'Empirical error'))
 
-display(HTML(tabulate.tabulate(table, tablefmt='html')))
+series_index = ["Model", "Empirical error"]
+results_df = results_df.append(pandas.Series(["Kernelized L2", 
+                                             kernelized_l2_er], 
+                                index=series_index),
+                  ignore_index=True)
+
+results_df = results_df.append(pandas.Series(["Kernelized L1", 
+                                              kernelized_l1_er], 
+                                index=series_index),
+                  ignore_index=True)
+
+results_df = results_df.append(pandas.Series(["L1", l1_er], 
+                                index=series_index),
+                  ignore_index=True)
+
+#display(HTML(tabulate.tabulate(table, tablefmt='html')))
+
+display(results_df)
+
+display(HTML(results_df.to_html()))
 #+END_SRC
 
 #+RESULTS:
