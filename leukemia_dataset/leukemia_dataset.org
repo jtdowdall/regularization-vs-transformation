@@ -159,21 +159,23 @@ def find_svm_best_params(kernel_type):
     #    print(param, round(score_mean, 4), round(score_sd, 4))
     return bestparams
 
-def estimate_svm(C, gamma, x_train, y_train, x_test):
-    our_svm = SVC(C=C, gamma=gamma)
+def estimate_svm(C, gamma, kernel_type, x_train, y_train, x_test):
+    our_svm = SVC(kernel=kernel_type, C=C, gamma=gamma)
     our_svm.fit(x_train, y_train)
     svm_preds = our_svm.predict(x_test)
     svm_er = zero_one_loss(y_test, svm_preds)
     svm_cm = confusion_matrix(y_test, svm_preds)
     return svm_er, svm_cm
 
-bestparams_rbf = find_svm_best_params("RBF")
-svm_rbf_er, svm_rbf_cm = estimate_svm(bestparams_rbf['C'], 
+bestparams_rbf = find_svm_best_params("rbf")
+svm_rbf_er, svm_rbf_cm = estimate_svm(bestparams_rbf['C'],
                                       bestparams_rbf['gamma'],
+                                      "rbf",
                                       x_train, y_train, x_test)
 bestparams_linear = find_svm_best_params("linear")
 svm_linear_er, svm_linear_cm = estimate_svm(bestparams_linear['C'], 
                                             bestparams_linear['gamma'],
+                                            "linear",
                                             x_train, y_train, x_test)
 #+END_SRC
 

@@ -12113,21 +12113,23 @@ div#notebook {
     <span class="c1">#    print(param, round(score_mean, 4), round(score_sd, 4))</span>
     <span class="k">return</span> <span class="n">bestparams</span>
 
-<span class="k">def</span> <span class="nf">estimate_svm</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">):</span>
-    <span class="n">our_svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">estimate_svm</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">kernel_type</span><span class="p">,</span> <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">):</span>
+    <span class="n">our_svm</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">kernel_type</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">C</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="n">gamma</span><span class="p">)</span>
     <span class="n">our_svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
     <span class="n">svm_preds</span> <span class="o">=</span> <span class="n">our_svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
     <span class="n">svm_er</span> <span class="o">=</span> <span class="n">zero_one_loss</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">svm_preds</span><span class="p">)</span>
     <span class="n">svm_cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">svm_preds</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">svm_er</span><span class="p">,</span> <span class="n">svm_cm</span>
 
-<span class="n">bestparams_rbf</span> <span class="o">=</span> <span class="n">find_svm_best_params</span><span class="p">(</span><span class="s2">&quot;RBF&quot;</span><span class="p">)</span>
-<span class="n">svm_rbf_er</span><span class="p">,</span> <span class="n">svm_rbf_cm</span> <span class="o">=</span> <span class="n">estimate_svm</span><span class="p">(</span><span class="n">bestparams_rbf</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">],</span> 
+<span class="n">bestparams_rbf</span> <span class="o">=</span> <span class="n">find_svm_best_params</span><span class="p">(</span><span class="s2">&quot;rbf&quot;</span><span class="p">)</span>
+<span class="n">svm_rbf_er</span><span class="p">,</span> <span class="n">svm_rbf_cm</span> <span class="o">=</span> <span class="n">estimate_svm</span><span class="p">(</span><span class="n">bestparams_rbf</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">],</span>
                                       <span class="n">bestparams_rbf</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">],</span>
+                                      <span class="s2">&quot;rbf&quot;</span><span class="p">,</span>
                                       <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
 <span class="n">bestparams_linear</span> <span class="o">=</span> <span class="n">find_svm_best_params</span><span class="p">(</span><span class="s2">&quot;linear&quot;</span><span class="p">)</span>
 <span class="n">svm_linear_er</span><span class="p">,</span> <span class="n">svm_linear_cm</span> <span class="o">=</span> <span class="n">estimate_svm</span><span class="p">(</span><span class="n">bestparams_linear</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">],</span> 
                                             <span class="n">bestparams_linear</span><span class="p">[</span><span class="s1">&#39;gamma&#39;</span><span class="p">],</span>
+                                            <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
                                             <span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">)</span>
 </pre></div>
 
@@ -12231,7 +12233,7 @@ div#notebook {
     <tr>
       <th>4</th>
       <td>SVM (Linear kernel)</td>
-      <td>0.411765</td>
+      <td>0.029412</td>
     </tr>
   </tbody>
 </table>
