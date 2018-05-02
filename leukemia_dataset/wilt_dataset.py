@@ -33,8 +33,8 @@ class WiltDataSet:
                     self.data.append(data_element)
 
     def convert_data_to_numpy_array(self):
-        np_array_data = np.zeros((4339, 5))
-        np_array_class = np.zeros((4339, 1))
+        np_array_data = np.zeros((len(self.data), 5))
+        np_array_class = np.zeros((len(self.data), 1))
         index = 0
         for d in self.data:
             np_array_data[index, 0] = d.glcm_pan
