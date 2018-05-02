@@ -33,7 +33,7 @@ class WiltDataSet:
                     self.data.append(data_element)
 
     def convert_data_to_numpy_array(self):
-        np_array_data = np.zeros((len(self.data), 5))
+        np_array_data = np.zeros((len(self.data), 5), dtype=int)
         np_array_class = np.zeros((len(self.data), 1))
         index = 0
         for d in self.data:

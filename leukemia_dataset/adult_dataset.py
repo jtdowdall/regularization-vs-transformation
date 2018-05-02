@@ -191,7 +191,7 @@ class AdultDataSet:
                     self.data.append(data_element)
 
     def convert_data_to_numpy_array(self):
-        np_array_data = np.zeros((len(self.data), 14))
+        np_array_data = np.zeros((len(self.data), 14), dtype=int)
         np_array_class = np.zeros((len(self.data), 1))
         index = 0
         for d in self.data:
@@ -221,6 +221,10 @@ def main():
     ads_test.read_in_dataset("AdultDataSet/adult_testData.txt")
     train_data, train_labels = ads_train.convert_data_to_numpy_array()
     test_data, test_labels = ads_test.convert_data_to_numpy_array()
+    print(train_data[0])
+    print(train_labels[0])
+    print(test_data[0])
+    print(test_labels[0])
 
 
 if __name__ == "__main__":
