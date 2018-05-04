@@ -11781,7 +11781,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
@@ -11811,7 +11811,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">{}</span>
@@ -11832,7 +11832,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">X_filename</span><span class="p">,</span> <span class="n">y_filename</span><span class="p">):</span>
@@ -11880,7 +11880,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[76]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># MNIST dataset</span>
@@ -11934,7 +11934,7 @@ Test: 5492 samples
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Breast Cancer dataset</span>
@@ -11980,7 +11980,7 @@ Test: 228 samples
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Wilt dataset</span>
@@ -12032,7 +12032,7 @@ Test: 500 samples
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Letters dataset</span>
@@ -12081,17 +12081,18 @@ Test: 618 samples
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[83]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display dataset splits and sizes</span>
-<span class="n">index</span> <span class="o">=</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;Train [classA, classB]&#39;</span><span class="p">,</span> <span class="s1">&#39;Test [classA, classB]&#39;</span><span class="p">]</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;# of features&#39;</span><span class="p">,</span> <span class="s1">&#39;Train [classA, classB]&#39;</span><span class="p">,</span> <span class="s1">&#39;Test [classA, classB]&#39;</span><span class="p">]</span>
 <span class="n">data_stats</span> <span class="o">=</span> <span class="n">df</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">datasets</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">data_stats</span> <span class="o">=</span> <span class="n">data_stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span>
-        <span class="n">m</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span><span class="n">train</span><span class="p">,</span><span class="n">test</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">),</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">m</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span><span class="n">features</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">test</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">),</span><span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">data_stats</span>
 </pre></div>
 
@@ -12105,7 +12106,7 @@ Test: 618 samples
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[83]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -12129,6 +12130,7 @@ Test: 618 samples
     <tr style="text-align: right;">
       <th></th>
       <th>Dataset</th>
+      <th># of features</th>
       <th>Train [classA, classB]</th>
       <th>Test [classA, classB]</th>
     </tr>
@@ -12136,33 +12138,38 @@ Test: 618 samples
   <tbody>
     <tr>
       <th>0</th>
-      <td>Wilt</td>
-      <td>[74, 4265]</td>
-      <td>[187, 313]</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>Mnist</td>
+      <td>784</td>
       <td>[4132, 4104]</td>
       <td>[2771, 2721]</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>Leukemia</td>
-      <td>[27, 11]</td>
-      <td>[20, 14]</td>
-    </tr>
-    <tr>
-      <th>3</th>
+      <th>1</th>
       <td>Letters</td>
+      <td>16</td>
       <td>[455, 470]</td>
       <td>[313, 305]</td>
     </tr>
     <tr>
-      <th>4</th>
+      <th>2</th>
       <td>Breast cancer</td>
+      <td>30</td>
       <td>[132, 209]</td>
       <td>[80, 148]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Leukemia</td>
+      <td>7129</td>
+      <td>[27, 11]</td>
+      <td>[20, 14]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Wilt</td>
+      <td>5</td>
+      <td>[74, 4265]</td>
+      <td>[187, 313]</td>
     </tr>
   </tbody>
 </table>
@@ -12509,24 +12516,6 @@ Best C value: 100.0
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="References-(move-to-separate-file-later)">References (move to separate file later)<a class="anchor-link" href="#References-(move-to-separate-file-later)">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Gretton, Arthur et al. 2012. "A Kernel Two-Sample Test." <em>Journal of Machine Learning Research</em>. Vol 13, p. 723-773.</p>
-<p>Hsu, Chih-Wei et al. 2016. "A Practical Guide to Support Vector Classification." Department of Computer Science, National Taiwan University.</p>
-
-</div>
-</div>
 </div>
     </div>
   </div>
