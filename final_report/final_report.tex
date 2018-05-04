@@ -171,7 +171,13 @@ The importance of the large-margin is that it helps the model's generalization p
 
 \subsubsection{Generalization and support vectors}
 
-The solution for the weights for the SVM has the form $\widehat{\vect{w}} = \sum_i \alpha_i \vect{x}_i$ where $\vect{\alpha}$ has many entries equal to 0; the $\vect{x}_i$ corresponding to non-zero $\alpha_i$ are called support vectors. Since the parameter vector for the fitted SVM depends only on a subset of data points, this helps model generalizability.
+The solution for the weights for the SVM has the form $\widehat{\vect{w}} = \sum_i \alpha_i \vect{x}_i$ where $\vect{\alpha}$ has many entries equal to 0; the $\vect{x}_i$ corresponding to non-zero $\alpha_i$ are called support vectors. Since the parameter vector for the fitted SVM depends only on a subset of data points, this helps model generalizability (Theodoridis and Koutroumbas 2009, 206).
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]{largeMarginPrinciple2.jpg}
+\caption{A simple caption \label{overflow}}
+\end{figure}
 
 \subsection{Summary of model fitting strategies and data transformations}
 
@@ -256,7 +262,9 @@ Lin, Yi. 2002. ``Support vector machines and the Bayes rule in classification.''
 
 Murphy, Kevin. 2012. \emph{Machine learning: a probabilistic perspective}. MIT Press: Cambridge, MA.
 
-Theodoridis, Sergios. 2015. \emph{Machine learning: a Bayesian and optimization perspective}. Elsevier: London.
+Theodoridis, Sergios and Konstantinos Koutroumbas. 2009. \emph{Pattern recognition}. Academic Press: Burlington, MA.
+
+Theodoridis, Sergios. 2015. \emph{Machine learning: a Bayesian and optimization perspective}. Academic Press: London, United Kingdom.
 
 Zhu, Ji and Trevor Hastie. 2004. ``Kernel logistic regression and the import vector machine.'' Preprint.
 
