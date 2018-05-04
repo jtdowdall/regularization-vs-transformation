@@ -69,27 +69,13 @@ Logistic regression is a discriminative classifier. It corresponds to a binary c
   p(y | \vect{x}, \vect{w}) = \text{Ber}(y | \text{sigm}(\vect{w}^T\vect{x}))
 \end{equation*}
 
-(Murphy 2012, 245) where sigm is the sigmoid function. If the possible values of $y$ are either $-1$ or $+1$, then $p(y = 1) = 1 / (1 + \exp(-\vect{w}^T\vect{x}))$ and $p(y = -1) = 1 / (1 + \exp(\vect{w}^T\vect{x}))$, so the negative log-likelihood, which equals negative one times the error of the model and which is therefore to be maximized, is
+(Murphy 2012, 245) where sigm is the sigmoid function. If the possible values of $y$ are either $-1$ or $+1$, then $p(y = 1) = 1 / (1 + \exp(-\vect{w}^T\vect{x}))$ and $p(y = -1) = 1 / (1 + \exp(\vect{w}^T\vect{x}))$. We minimize the error by maximizing the negative log-likelihood:
 
 \begin{equation*}
   NLL(\vect{w}) = \log(1 + \exp(-y_i \vect{w}^T\vect{x}))
 \end{equation*}
 
-(Murphy 2012, 245). There is not a closed-form solution for the MLE of $\vect{w}$, so it must estimated by an optimization algorithm.
-
-L2 regularization is achieved by adding the term $\frac{\lambda}{2} {\norm{w}_2}^2$ to $NLL(\vect{w})$ above, giving
-
-\begin{equation*}
-  NLL(\vect{w}, \lambda) = \log(1 + \exp(-y_i \vect{w}^T\vect{x})) + \frac{\lambda}{2} {\norm{\vect{w}}_2}^2
-\end{equation*}
-
-L1 regularization is achieved by adding the term $\lambda {\norm{\vect{w}}_1}^2$ where $\norm{\vect{w}}_1 = \sum_{i=1}^{c} |\vect{w}_i|$ (Theodoridis 2015, 404), so
-
-\begin{equation*}
-  NLL(\vect{w}, \lambda) = \log(1 + \exp(-y_i \vect{w}^T\vect{x})) + \lambda {\norm{\vect{w}}_1}
-\end{equation*}
-
-In this project we do not run logistic regression with no regularization on untransformed data, since it is likely to overfit.
+(Murphy 2012, 245). There is not a closed-form solution for the MLE of $\vect{w}$, so it must be estimated by an optimization algorithm. However, we must often design constraints to prevent the parameters from overfitting the training data and losing generality.
 
 \subsubsection{The effects of $\ell_1$ and $\ell_2$ regularization}
 
@@ -99,6 +85,21 @@ If only a few features contain significant information and there are a large num
 
 The following figure (Figure 1, taken from Theodoridis 2015, 406, Figure 9.2) shows the relationship between a given component $\theta$ of the parameter vector $\vect{\theta}$ (what we call $\vect{w}$) and its contribution to $\norm{\vect{\theta}}_p$, $|\theta|^p$, for given levels of $p$. For $\ell_p$ norms with $p \geq 1$, components $\theta$ with larger $|\theta|^p$ give a larger contribution to the norm, so assuming for example's sake that two components $\theta_1$ and $\theta_2$ have the same effect on the fit of the model and $|\theta_1|^p > |\theta_2|^p > 1$, the minimization will try to reduce the size of $\theta_1$ more than $\theta_2$. Conversely, for $p > 1$, any $\theta_j$ with $|\theta_j|^p < 1$ will not have its size reduced very much at all, irrespective of the amount to which it contributes to minimizing the error of the model.
 
+\subsubsection{Applying regularization to logistic regression}
+
+$\ell_1$ regularization is achieved by adding the term $\lambda {\norm{\vect{w}}_1}^2$ where $\norm{\vect{w}}_1 = \sum_{i=1}^{c} |\vect{w}_i|$ (Theodoridis 2015, 404), so
+
+\begin{equation*}
+  NLL(\vect{w}, \lambda) = \log(1 + \exp(-y_i \vect{w}^T\vect{x})) + \lambda {\norm{\vect{w}}_1}
+\end{equation*}
+
+
+$\ell_2$ regularization is achieved by adding the term $\frac{\lambda}{2} {\norm{w}_2}^2$ to $NLL(\vect{w})$ above, giving
+
+\begin{equation*}
+  NLL(\vect{w}, \lambda) = \log(1 + \exp(-y_i \vect{w}^T\vect{x})) + \frac{\lambda}{2} {\norm{\vect{w}}_2}^2
+\end{equation*}
+
 However, for $p = 1$, even components $\theta_j$ with $|\theta_j|^1 < 1$ will have the regularization applied to them. Therefore irrespective of the size of a true $\theta_j$, the regularization will force $\theta_j$ to 0 if it does not contribute to minimizing model error.
 
 (The above discussion was based Theodoridis 2015, 406-407)
@@ -106,12 +107,12 @@ However, for $p = 1$, even components $\theta_j$ with $|\theta_j|^1 < 1$ will ha
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=90mm]{figure1.jpg}
-\caption{A simple caption \label{overflow}}
+\caption{CHANGE THISSS!!!!!!!!! \label{overflow}}
 \end{figure}
 
 \subsection{Kernels: linear vs RBF}
 
-Kernels were discussed in lecture. A Mercer kernel is a kernel whose Gram matrix
+Kernels are commonly used to model similarities over pairs of data points. A Mercer kernel is a kernel whose Gram matrix
 
 \begin{equation*}
   \vect{K} = \begin{pmatrix}
@@ -153,7 +154,7 @@ we see that $K(x, x^\prime) = \vect{\phi}(x)^T \vect{\phi}(x)$. The right hand s
 
 \subsubsection{The ``kernel trick''}
 
-If it is difficult to compute $\vect{\phi}(\vect{x})^T \vect{\phi}(\vect{x})$, instead we can compute $K(\vect{x}, \vect{x}^\prime)$ in the original $\mathcal{X}$ space since the results are equal. For the kernels used in this project, this is useful for the RBF kernel, as exact calculation of $\vect{\phi}(\vect{x})^T \vect{\phi}(\vect{x})$ in the range space of $\vect{\phi}$ is impossible.
+If it is difficult to compute $\vect{\phi}(\vect{x})^T \vect{\phi}(\vect{x})$, instead we can compute $K(\vect{x}, \vect{x}^\prime)$ in the original $\mathcal{X}$ space since the results are equal. For the kernels used in this project, this is useful for the RBF kernel, as exact calculation of $\vect{\phi}(\vect{x})^T \vect{\phi}(\vect{x})$ in the range space of $\vect{\phi}$ is impossible. 
 
 \subsection{SVMs}
 
@@ -185,7 +186,7 @@ The SVM is used in this project with both the linear and RBF kernels.
 
 \subsection{SVM and logistic regression with the RBF kernel: a close relationship}
 
-Logistic regression was explained above. In this section we explain the effects of using logistic regression on data that has been transformed with the RBF kernel, and how this relates to the case where an SVM is used with such transformed data.
+In this section, we explain the effects of using logistic regression on data that has been transformed with the RBF kernel, and how this relates to the case where an SVM is used with such transformed data.
 
 The optimal $f(\vect{x})$ in fitting an SVM is of the form $f(\vect{x}) = \sum_{i=1}^{n} \alpha_i K(\vect{x}, \vect{x}_i^\prime)$ (Zhu and Hastie, p.2). Also since the negative log-likelihood (NLL) for logistic regression has a similar shape to the NLL of the SVM, replacing the NLL of the SVM with the NLL of the logistic regression gives roughly the same solution (Zhu and Hastie, 2). Then for a Mercer kernel, the interpretation of the probability $p(\vect{x})$ (which equals $P(y = 1 | \vect{X} = \vect{x})$, Lin 2002) is
 
