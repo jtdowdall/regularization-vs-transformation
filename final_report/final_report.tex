@@ -228,7 +228,8 @@ where the last step is by defining $\vect{w} = \sum_{i} \alpha_i \vect{\phi}(\ve
 
 The following table summarizes the combinations of model fitting strategies and data transformations used in this project. Each column indicates a different model fitting strategy (used in conjunction, of course, with minimizing model error as represented by a loss function), while each row indicates kernel, in other words, a feature transformation. Each cell indicates the classifier that was used in conjuction with the fitting strategy and data transformation. Note that the model used for any particular combination is deterministic: in other words, the desired model fitting strategy and data transformation indicate a model choice.
 
-\begin{center}
+\begin{table}[h]
+  \centering
   \begin{tabular}{l|c|c|c|c|}
          & Simple loss function & \begin{tabular}{@{}c@{}}Loss function with \\ $\ell_1$ regularization\end{tabular} & \begin{tabular}{@{}c@{}}Loss function with \\ $\ell_2$ regularization\end{tabular} & \begin{tabular}{@{}c@{}}Few data points \&\\ large margin\end{tabular} \\
 \hline
@@ -236,8 +237,9 @@ The following table summarizes the combinations of model fitting strategies and 
 \hline
   RBF    & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular} &          &          & SVM \\
 \hline
-\end{tabular}
-\end{center}
+  \end{tabular}
+  \caption{Models used with different fitting strategies and \\ feature transformations}
+  \end{table}
 
 \section{Datasets}
 
@@ -372,17 +374,19 @@ The following subsections describe the datasets used, and they are followed by a
 
 The following table shows the number of training samples in each class (A or B), for each dataset:
 
-\begin{center}
-  \begin{tabular}{r|c c}
-    Dataset       & Train [classA, classB] & Test [classA, classB] \\
+\begin{table}[h]
+  \centering
+  \begin{tabular}{r|c c c}
+    Dataset       & Features & Train [classA, classB] & Test [classA, classB] \\
     \hline
-    Wilt          & [74, 4265]             & [187, 313] \\
-    Mnist         & [4132, 4104]           & [2771, 2721] \\
-    Leukemia      & [27, 11]               & [20, 14] \\
-    Letters       & [455, 470]             & [313, 305] \\
-    Breast cancer & [132, 209]             & [80, 148]
+    Wilt          & 5        & [74, 4265]             & [187, 313] \\
+    MNIST         & 784      & [4132, 4104]           & [2771, 2721] \\
+    Leukemia      & 7129     & [27, 11]               & [20, 14] \\
+    Letters       & 16       & [455, 470]             & [313, 305] \\
+    Breast Cancer & 30       & [132, 209]             & [80, 148]
 \end{tabular}
-\end{center}
+  \caption{Number of features and number of samples in \\classes A and B by dataset}
+\end{table}
 
 \section{Experimental analysis}
 \begin{center}
@@ -430,9 +434,9 @@ Volume 14, 2005 - Issue 1.
 
 \subsection{Works cited in literature review}
 
-Aizerman, M. A., Emmanuel M. Braverman and Rozoner, L. I. 1964. "Theoretical foundations of the potential function method in pattern recognition learning". \emph{Automation and Remote Control}. 25: 821–837.
+Aizerman, M. A., Emmanuel M. Braverman and Rozoner, L. I. 1964. "Theoretical Foundations of the Potential Function Method in Pattern Recognition Learning". \emph{Automation and Remote Control}. 25: 821–837.
 
-Boser, Bernhard E., Isabelle M. Guyon and Vladimir N. Vapnik. 1992. "A training algorithm for optimal margin classifiers". \emph{Proceedings of the fifth annual workshop on Computational learning theory – COLT '92}. p. 144.
+Boser, Bernhard E., Isabelle M. Guyon and Vladimir N. Vapnik. 1992. "A Training Algorithm for Optimal Margin Classifiers". \emph{Proceedings of the fifth annual workshop on Computational learning theory – COLT '92}. p. 144.
 
 Cox, DR. 1958. "The regression analysis of binary sequences (with discussion)". \emph{J Roy Stat Soc B}. 20: 215–242.
 
