@@ -119,7 +119,6 @@ $\ell_1$ regularization is achieved by adding the term $\lambda {\norm{\vect{w}}
   NLL(\vect{w}, \lambda) = \log(1 + \exp(-y_i \vect{w}^T\vect{x})) + \lambda {\norm{\vect{w}}_1}
 \end{equation*}
 
-
 $\ell_2$ regularization is achieved by adding the term $\frac{\lambda}{2} {\norm{w}_2}^2$ to $NLL(\vect{w})$ above, giving
 
 \begin{equation*}
@@ -133,7 +132,7 @@ However, for $p = 1$, even components $\theta_j$ with $|\theta_j|^1 < 1$ will ha
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=90mm]{figure1.jpg}
-\caption{CHANGE THISSS!!!!!!!!! \label{overflow}}
+\caption{The approximate effect of the $\ell_p$ norm on a given\\ component of the parameter vector \label{overflow}}
 \end{figure}
 
 \subsection{Kernels: linear vs RBF}
@@ -205,7 +204,7 @@ The solution for the weights for the SVM has the form $\widehat{\vect{w}} = \sum
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]{largeMarginPrinciple2.jpg}
-\caption{A simple caption \label{overflow}}
+\caption{Visualization of the large margin principle \label{overflow}}
 \end{figure}
 
 The SVM is used in this project with both the linear and RBF kernels.
@@ -227,15 +226,15 @@ where the last step is by defining $\vect{w} = \sum_{i} \alpha_i \vect{\phi}(\ve
 
 \subsection{Summary of model fitting strategies and data transformations}
 
-The following table summarizes the combinations of model fitting strategies and data transformations used in this project. Each column indicates a different model fitting strategy (used in conjunction, of course, with minimizing model error as represented by a loss function), while each row indicates a type of data transformation. Each cell indicates the classifier that was used in conjuction with the fitting strategy and data transformation. Note that the model used for any particular combination is deterministic: in other words, the desired model fitting strategy and data transformation indicate a model choice.
+The following table summarizes the combinations of model fitting strategies and data transformations used in this project. Each column indicates a different model fitting strategy (used in conjunction, of course, with minimizing model error as represented by a loss function), while each row indicates kernel, in other words, a feature transformation. Each cell indicates the classifier that was used in conjuction with the fitting strategy and data transformation. Note that the model used for any particular combination is deterministic: in other words, the desired model fitting strategy and data transformation indicate a model choice.
 
 \begin{center}
   \begin{tabular}{l|c|c|c|c|}
-         & vanilla & $\ell_1$ & $\ell_2$ & few data pts \& large margin \\
+         & Simple loss function & \begin{tabular}{@{}c@{}}Loss function with \\ $\ell_1$ regularization\end{tabular} & \begin{tabular}{@{}c@{}}Loss function with \\ $\ell_2$ regularization\end{tabular} & \begin{tabular}{@{}c@{}}Few data points \&\\ large margin\end{tabular} \\
 \hline
-  linear &         & log reg  & log reg  & SVM \\
+  Linear &         & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular}  & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular}  & SVM \\
 \hline
-  RBF    & log reg &          &          & SVM \\
+  RBF    & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular} &          &          & SVM \\
 \hline
 \end{tabular}
 \end{center}
