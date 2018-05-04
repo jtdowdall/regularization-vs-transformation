@@ -119,7 +119,6 @@ $\ell_1$ regularization is achieved by adding the term $\lambda {\norm{\vect{w}}
   NLL(\vect{w}, \lambda) = \log(1 + \exp(-y_i \vect{w}^T\vect{x})) + \lambda {\norm{\vect{w}}_1}
 \end{equation*}
 
-
 $\ell_2$ regularization is achieved by adding the term $\frac{\lambda}{2} {\norm{w}_2}^2$ to $NLL(\vect{w})$ above, giving
 
 \begin{equation*}
@@ -133,7 +132,7 @@ However, for $p = 1$, even components $\theta_j$ with $|\theta_j|^1 < 1$ will ha
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=90mm]{figure1.jpg}
-\caption{CHANGE THISSS!!!!!!!!! \label{overflow}}
+\caption{The approximate effect of the $\ell_p$ norm on a given\\ component of the parameter vector \label{overflow}}
 \end{figure}
 
 \subsection{Kernels: linear vs RBF}
@@ -205,7 +204,7 @@ The solution for the weights for the SVM has the form $\widehat{\vect{w}} = \sum
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]{largeMarginPrinciple2.jpg}
-\caption{A simple caption \label{overflow}}
+\caption{Visualization of the large margin principle \label{overflow}}
 \end{figure}
 
 The SVM is used in this project with both the linear and RBF kernels.
@@ -227,27 +226,161 @@ where the last step is by defining $\vect{w} = \sum_{i} \alpha_i \vect{\phi}(\ve
 
 \subsection{Summary of model fitting strategies and data transformations}
 
-The following table summarizes the combinations of model fitting strategies and data transformations used in this project. Each column indicates a different model fitting strategy (used in conjunction, of course, with minimizing model error as represented by a loss function), while each row indicates a type of data transformation. Each cell indicates the classifier that was used in conjuction with the fitting strategy and data transformation. Note that the model used for any particular combination is deterministic: in other words, the desired model fitting strategy and data transformation indicate a model choice.
+The following table summarizes the combinations of model fitting strategies and data transformations used in this project. Each column indicates a different model fitting strategy (used in conjunction, of course, with minimizing model error as represented by a loss function), while each row indicates kernel, in other words, a feature transformation. Each cell indicates the classifier that was used in conjuction with the fitting strategy and data transformation. Note that the model used for any particular combination is deterministic: in other words, the desired model fitting strategy and data transformation indicate a model choice.
 
 \begin{center}
   \begin{tabular}{l|c|c|c|c|}
-         & vanilla & $\ell_1$ & $\ell_2$ & few data pts \& large margin \\
+         & Simple loss function & \begin{tabular}{@{}c@{}}Loss function with \\ $\ell_1$ regularization\end{tabular} & \begin{tabular}{@{}c@{}}Loss function with \\ $\ell_2$ regularization\end{tabular} & \begin{tabular}{@{}c@{}}Few data points \&\\ large margin\end{tabular} \\
 \hline
-  linear &         & log reg  & log reg  & SVM \\
+  Linear &         & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular}  & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular}  & SVM \\
 \hline
-  RBF    & log reg &          &          & SVM \\
+  RBF    & \begin{tabular}{@{}c@{}}Logistic \\ regression\end{tabular} &          &          & SVM \\
 \hline
 \end{tabular}
 \end{center}
 
-\begin{description}
-\item[vanilla:] loss function with no regularization term \\
-\item[loss + $\ell_1$:] loss function with $\ell_1$ regularization term \\
-\item[loss + $\ell_2$:] loss function with $\ell_2$ regularization term
-\item[few data pts \& large margin] model attempts to utilize small subset of of training data in parameter estimation, and attempts to maximize size of margin while minimizing error 
-\end{description}
-
 \section{Datasets}
+
+The following subsections describe the datasets used, and they are followed by a summary table.
+
+\subsection{Breast Cancer Dataset}
+\begin{enumerate}
+    \item Wisconsin Diagnostic Breast Cancer (WDBC)
+    \item Source Information
+    \begin{itemize}
+        \item Creators:
+        \begin{itemize}
+            \item Dr. William H. Wolberg, General Surgery Dept., University of Wisconsin,  Clinical Sciences Center, Madison, WI 53792. wolberg@eagle.surgery.wisc.edu
+            \item W. Nick Street, Computer Sciences Dept., University of Wisconsin, 1210 West Dayton St., Madison, WI 53706. street@cs.wisc.edu  608-262-6619
+            \item Olvi L. Mangasarian, Computer Sciences Dept., University of Wisconsin, 1210 West Dayton St., Madison, WI 53706. olvi@cs.wisc.edu
+        \end{itemize}
+        \item Donor: Nick Street
+        \item Date: November 1995
+    \end{itemize}
+    \item Relevant information
+    \begin{itemize}
+        \item Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.  They describe characteristics of the cell nuclei present in the image. A few of the images can be found at http://www.cs.wisc.edu/~street/images/
+    \end{itemize}
+    \item Number of instances: 569
+    \item Number of attributes: 32 (ID, diagnosis, 30 real-valued input features)
+    \item Attribute information:
+    \begin{enumerate}
+        \item ID number
+        \item Diagnosis (M = malignant, B = benign)
+        \item 3-32)
+        \begin{itemize}
+            \item Ten real-valued features are computed for each cell nucleus such as radius, texture, etc.
+        \end{itemize}
+        \item Class distribution: 357 benign, 212 malignant
+    \end{enumerate}
+    \item W.N. Street et al. (1993)
+\end{enumerate}
+
+\subsection{Letter Dataset}
+\begin{enumerate}
+    \item Letter Image Recognition Data
+    \item Source Information
+    \begin{itemize}
+        \item Creator: David J. Slate
+        \item Odesta Corporation; 1890 Maple Ave; Suite 115; Evanston, IL 60201
+        \item Donor: David J. Slate (dave@math.nwu.edu) (708) 491-3867
+        \item Date: January, 1991
+    \end{itemize}
+    \item Past Usage:
+    \begin{itemize}
+        \item P.W. Frey and D. J. Slate (Machine Learning Vol 6 \#2 March 91):
+        \begin{itemize}
+            \item "Letter Recognition Using Holland-style Adaptive Classifiers".
+        \end{itemize}
+    \end{itemize}
+    \item Number of instances: 20000.
+    \begin{itemize}
+        \item However, we only used 1543 since we are testing binary classifiers and we chose the letters E and F, whose counts are listed below.
+        \item The data was split 60/40 for a training/testing set.
+    \end{itemize}
+    \item Number of Attributes: 17 (Letter category and 16 numeric features)
+    \item Attribute Information:
+    \begin{itemize}
+        \item lettr	capital letter	(26 values from A to Z)
+        \item x-box	horizontal position of box	  (integer)
+        \item y-box	vertical position of box	  (integer)
+        \item width	width of box			      (integer)
+        \item high 	height of box			      (integer)
+        \item onpix	total \# on pixels		      (integer)
+        \item x-bar	mean x of on pixels in box	  (integer)
+        \item y-bar	mean y of on pixels in box	  (integer)
+        \item x2bar	mean x variance			      (integer)
+        \item y2bar	mean y variance			      (integer)
+        \item xybar	mean x y correlation		  (integer)
+        \item x2ybr	mean of x * x * y		      (integer)
+        \item xy2br	mean of x * y * y		      (integer)
+        \item x-ege	mean edge count left to right (integer)
+        \item xegvy	correlation of x-ege with y	  (integer)
+        \item y-ege	mean edge count bottom to top (integer)
+        \item yegvx	correlation of y-ege with x	  (integer)
+    \end{itemize}
+    \item Class Distribution:
+    \begin{itemize}
+        \item 789-A 766-B 736-C 805-D \textbf{768-E} \textbf{775-F} 773-G
+        \item 734-H 755-I 747-J 739-K 761-L 792-M 783-N
+        \item 753-O 803-P 783-Q 758-R 748-S 796-T 813-U
+        \item 764-V 752-W 787-X 786-Y 734-Z
+    \end{itemize}
+    \item P.W. Fray and D.J. Slate (1991)
+\end{enumerate}
+
+\subsection{Leukemia Dataset}
+\begin{enumerate}
+    \item This dataset set was built to help predict new classes of cancer. The original dataset was built from 38 leukemia bone marrow samples. The bone marrow samples were obtained from acute leukemia patients at diagnosis.
+    \item Number of samples: 38
+    \item Number of features: 7129
+    \item Number of classes: 2. Acute myeloid leukemia (AML) \& Acute lymphoblastic leukemia (ALL)
+    \item Training/Testing: The data was split 60/40
+    \item Golub et al. (1999)
+\end{enumerate}
+
+\subsection{MNIST Dataset}
+\begin{enumerate}
+    \item The MNIST database is a large collection of handwritten digits from 0 to 9. This dataset is a subset of the larger dataset NIST (Grother, 1995), which contains 62 classes of handwritten characters. Each sample is a 28x28 black and white image.
+    \item We represent each sample as a 1-dimensional vector with 784 features, each feature corresponding to a particular pixel. Each feature is an integer value between 0 and 255.
+    \item Since we are testing binary classifiers, we only consider two digits out of the ten in the dataset. We chose "8" and "0" because they have many overlapping features, making them more difficult to classify. After a 60/40 train/test split, the resulting dataset has ~8000 training samples and ~5500 test samples with an approximately equal amount of samples representing each class.
+    \item LeCun et al. (1998)
+\end{enumerate}
+
+\subsection{Wilt Dataset}
+\begin{enumerate}
+    \item Was created from  satellite images taken over the forest in Japan that contains Japanese Oak Wilt and Japanese Pine Wilt trees B.A. Johnson et al (2013). The images were used to determine whether or not the trees were diseased, which means the color of their canopy was more on the red side than the green side B.A. Johnson et al (2013).
+    \item Features (6 total, 5 features, 1 class per sample):
+    \begin{itemize}
+        \item class: "w" (diseased trees), "n" (all other land cover)
+        \item GLCM\_Pan: GLCM mean texture (Pan band)
+        \item Mean\_G: Mean green value
+        \item Mean\_R: Mean red value
+        \item Mean\_NIR: Mean NIR value
+        \item SD\_Pan: Standard deviation (Pan band)
+    \end{itemize}
+    \item Number of classes: 2
+    \item Number of samples:
+    \begin{itemize}
+        \item Training set: 4339
+        \item Testing set: 500
+    \end{itemize}
+    \item B.A. Johnson et al. (2013)
+\end{enumerate}
+
+\subsection{Summary of datasets}
+
+\begin{center}
+  \begin{tabular}{r|c c}
+    Dataset       & Train [classA, classB] & Test [classA, classB] \\
+    \hline
+    Wilt          & [74, 4265]             & [187, 313] \\
+    Mnist         & [4132, 4104]           & [2771, 2721] \\
+    Leukemia      & [27, 11]               & [20, 14] \\
+    Letters       & [455, 470]             & [313, 305] \\
+    Breast cancer & [132, 209]             & [80, 148]
+\end{tabular}
+\end{center}
 
 \section{Experimental analysis}
 \begin{center}
@@ -268,6 +401,8 @@ The following table summarizes the combinations of model fitting strategies and 
 
 \section{Works cited}
 
+\subsection{Works cited in main report}
+
 Abu-Mostafa, Malik Magdon-Ismail and Hsuan-Tien Lin. 2012. \emph{Learning with data}, e-Chapter 8 (``Support vector machines'') AMLBook.
 
 Gretton, Arthur et al. 2012. "A Kernel Two-Sample Test." Journal of Machine Learning Research. Vol 13, p. 723-773.
@@ -287,7 +422,7 @@ Theodoridis, Sergios. 2015. \emph{Machine learning: a Bayesian and optimization 
 Zhu, Ji and Trevor Hastie. 2004. ``Kernel logistic regression and the import vector machine.'' \emph{Journal of Computational and Graphical Statistics}.  
 Volume 14, 2005 - Issue 1.
 
-\section{References cited in literature review}
+\subsection{Works cited in literature review}
 
 Aizerman, M. A., Emmanuel M. Braverman and Rozoner, L. I. 1964. "Theoretical foundations of the potential function method in pattern recognition learning". \emph{Automation and Remote Control}. 25: 821–837.
 
@@ -296,5 +431,17 @@ Boser, Bernhard E., Isabelle M. Guyon and Vladimir N. Vapnik. 1992. "A training 
 Cox, DR. 1958. "The regression analysis of binary sequences (with discussion)". \emph{J Roy Stat Soc B}. 20: 215–242.
 
 Tychonoff, A.N. and V.Y. Arsenin. \emph{Solution of ill-posed problems}. Winston \& Sons: Washington, 1977.
+
+\subsection{Datasets}
+
+Brian Alan Johnson, Ryutaro Tateishi and Nguyen Thanh Hoan. 2013. "A hybrid pansharpening approach and multiscale object-based image analysis for mapping diseased pine and oak trees" International Journal of Remote Sensing, 34:20, 6969-6982. https://doi.org/10.1080/01431161.2013.810825
+
+P. W. Frey and D. J. Slate. 1991. "Letter Recognition Using Holland-style Adaptive Classifiers". Machine Learning Vol 6 \#2. https://link.springer.com/article/10.1007/BF00114162
+
+Golub, T. R., D. K. Slonim, P. Tamayo, C. Huard, M. Gaasenbeek, J. P. Mesirov, H. Coller, et al. 1999. "Molecular Classification of Cancer: Class Discovery and Class Prediction by Gene Expression Monitoring." Science 286 (5439): 531–527. doi:10.1126/science.286.5439.531.
+
+Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner. 1998 "Gradient-based learning applied to document recognition." Proceedings of the IEEE, 86(11):2278-2324.
+W.N. Street, W.H. Wolberg and O.L. Mangasarian. 1993. "Nuclear feature extraction for breast tumor diagnosis." IS\&T/SPIE 1993 International Symposium on Electronic Imaging: Science and Technology, volume 1905, pages 861-870.
+
 
 \end{document}
