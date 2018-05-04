@@ -79,9 +79,11 @@ The techniques explained and used in this project are widely used in pattern cla
 
 \subsection{Problem statement}
 
-To explain how techniques of regularization and data transformation can be used in conjunction with the binary classifers logistic regression and SVM, use this understanding to hypothesize regarding the performance of the various techniques on datasets with differing characteristics, and test these hypotheses on real-world datsets.
+To explain how techniques of regularization and data transformation can be used in conjunction with the binary classifers logistic regression and SVM, use this understanding to hypothesize regarding the performance of the various techniques on datasets with differing characteristics, and test these hypotheses on real-world datsets. Our hypotheses are as follows:
 
-On datasets which are linearly separable, we expect 
+On datasets which are linearly separable, if most of the features are useful towards classification we expect logistic regression with $\ell_2$ regularization and SVM with a linear kernel to perform well. If only a few of the features are useful towards classification on such a dataset, we expect logistic regression with $\ell_1$ regularization to perform better.
+
+On datasets which are not linearly separable, if most of the features are useful towards classification we expect the SVM with an RBF kernel to perform well. If only a few of the features are useful towards classification on such a dataset, we expect logistic regression with an RBF kernel to perform better.
 
 \section{Approach}
 
