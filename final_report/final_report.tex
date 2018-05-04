@@ -57,9 +57,13 @@
 
 The fact that the performance of classifiers can be improved through methods that 1) impose some form of regularization on the estimated parameters, or 2) exploit useful transformations of the feature space, suggests that understanding of the intracies and interrelationships between these techniques is an important part of any practitioner's toolbox in the field of pattern recognition and machine learning. Our project seeks to build such an understanding and to test that understanding against the application of the techniques to real-world datasets.
 
-The basic idea of regularization is that when fitted to a particular training data set models may learn the idiosyncracies of that data set and that will be reflected in poorer performance on an unseen test data set compared to the performance of the average of a series of models fit to various training sets. Regularization simulates this procedure by restricting the 
+The basic idea of regularization is that when fitted to a particular training data set models may learn the idiosyncracies of that data set (overfitting) and that will be reflected in poorer performance on an unseen test data set compared to the performance of the average of a series of models fit to various training sets. Regularization simulates this procedure by restricting the magnitude of components of the parameter vector, forcing the fitted model to be more ``smooth'' than if the parameter vector were unrestricted. Overfitting can also be addressed through sparsity-encouraging regularization ($\ell_1$ regularization, which increases the ``signal to noise ratio'' by encouraging the parameter coefficients of features that do not contribute to reducing model error to go to zero). 
 
-TODO Add overfitting/underfitting, regularization, transformation explanations.
+Underfitting occurs when the model is too simple for the data. Since the models in this project produce linear decision boundaries, this will occur when features are not linearly separable in the original feature space. Transforming the data to a higher-dimensional feature space, in this project demonstrated by the use of the RBF kernel, may allow the data to become linearly separable in that feature space. Through the use of the kernel trick, the model can be fit in the higher-dimensional space through performing calculations in the original feature space, and the resulting decision boundary visualized in the original feature space.
+
+Overfitting can also be addressed through fitting the data using a subset of the training points, and by choosing a linear boundary that separates the data points with as large a ``margin'', or distance from the closest points to the boundary, as possible. Both of these qualities are characteristics of the Support Vector Machine (SVM).
+
+Another classifier, logistic regression, can be used in conjunction with the $\ell_1$ and $\ell_2$ norms for regularization, as well as with transformed data (kernelized logistic regression). The details of all these techniques will be explained in sections to follow.
 
 \subsection{Literature review}
 
@@ -74,6 +78,10 @@ The usage of kernels with logistic regression is demonstrated in Zhu and Hastie 
 The techniques explained and used in this project are widely used in pattern classification (for example see).
 
 \subsection{Problem statement}
+
+To explain how techniques of regularization and data transformation can be used in conjunction with the binary classifers logistic regression and SVM, use this understanding to hypothesize regarding the performance of the various techniques on datasets with differing characteristics, and test these hypotheses on real-world datsets.
+
+On datasets which are linearly separable, we expect 
 
 \section{Approach}
 
@@ -249,7 +257,11 @@ The following table summarizes the combinations of model fitting strategies and 
 
 Abu-Mostafa, Malik Magdon-Ismail and Hsuan-Tien Lin. 2012. \emph{Learning with data}, e-Chapter 8 (``Support vector machines'') AMLBook.
 
+Gretton, Arthur et al. 2012. "A Kernel Two-Sample Test." Journal of Machine Learning Research. Vol 13, p. 723-773.
+
 Guestrin, Carlos. 2007. ``Support vector machines.'' Lecture slides for ``Machine Learning – 10701/15781`` at Carnegie Mellon University. 
+
+Hsu, Chih-Wei et al. 2016. "A Practical Guide to Support Vector Classification." Department of Computer Science, National Taiwan University.
 
 Lin, Yi. 2002. ``Support vector machines and the Bayes rule in classification.'' \emph{Data Mining and Knowledge Discovery} (6): 259–275.
 
