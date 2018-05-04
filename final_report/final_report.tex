@@ -389,13 +389,16 @@ The following table shows the number of training samples in each class (A or B),
 \end{table}
 
 \section{Experimental analysis}
-All models were evaluated on each of the five datasets discussed. 
+
+All models were evaluated on each of the five datasets discussed.
 
 To choose the $\gamma$ function of the RBF kernel (where $\gamma = 1/(2\sigma^2)$) we follow the heuristic choice mentioned in (Gretton et al. 2012, 748) of setting $\sigma$ to equal the median distance between points of the training data.
 
-We performed grid-search to determine the optimal C margin value for the SVM models (Hsu et al. 2016, 5). Specifically, we performed 5-fold cross-validation over the 1D space $\gamma \in {0.01, 0, 100, 1000}$ to select the best value for each individual model. 
+We performed grid-search to determine the optimal C margin value for the SVM models (Hsu et al. 2016, 5). Specifically, we performed 5-fold cross-validation over the 1D space $\gamma \in {0.01, 0, 100, 1000}$ to select the best value for each individual model.
 
-A value of $\lambda=1$ was used for regularization. Since ther
+A value of $\lambda=1$ was used for regularization.
+
+We built our models using the scikit-learn package with Python. The linear regression models have built in regularization, so we set $\lambda=0.0001$ so we could observe the effects of the RBF kernel without the influence of regularization.
 
 \begin{table}[h]
   \centering
@@ -424,11 +427,25 @@ A value of $\lambda=1$ was used for regularization. Since ther
 
 \section{Findings}
 
+Performance was poor on the Wilt dataset because the training samples were almost all in class B, so none of the classifiers could be properly fit. Even so, the RBF kernel was able to transform the data so it could be more effectively linearly separated than it could using the other methods.
 
+Our highest ratio of features to observations, the Leukimia data set, has 7129 features. Since these are genes we would expect the true model to be sparse in features (i.e. only a few genes causing the disease). Our hypothesis that $\ell_1$ performs better in such cases certainly holds here. Transforming the feature space into an even higher dimension had little effect compared to that of inducing sparsity.
+
+The next highest ratio of features to observations is the MNIST data set. We expected that MNIST would not be linearly separable, and it turns out that transforming the feature space into a very high dimensional one via the RBF kernel gave good performance on both models which used that kernel. The encouraging of sparsity did not seem to make a major difference here.
+
+When applied to the Letters data set, the various models performed similarly as they did on MNIST, indicating that Letters is not linearly separable, nor is the true model sparse enough in features to exhibit good performance under $\ell_1$ regularization.
+
+The Breast Cancer dataset has a fairly balanced ratio of features to observations compared to the other datasets. SVM RBF performs the best on this dataset. The SVM incorporates few data points in its fitting, has good generalization from the large-margin principle, and with the RBF kernel is able to fit data that is not linearly-separable in the original feature space, so the combination of these attributes likely leads to its superior performance here and in fact on most of the other data sets as well.
 
 \section{Summary and future work}
 
+There are many different ways to combat non-linearity in data. There are also many ways to combat overfitting. However, its a delicate process combining the techniques. We explored non-linear transformations and regularization, but there is still much to understand about how these techniques behave with feature reduction strategies like principal component analysis. Feature reduction offers a whole new approach to reduce overfitting and can produce interesting results when combined with subsequent kernel transformation.
+
+While there seems to be some reliable go-to methods, it has been shown that there is no clear one-size-fits-all solution to accurately modeling and generalizing complex distributions. The safest method is to build an intuition of how these techniques behave on different sizes and shapes of data.
+
 \section{Group member contributions}
+
+Eric wrote the original code to estimate the various models, wrote code to load one of the datasets, wrote the Introduction and Approach sections of the paper, and handled communication with Professor Ross. James gathered the information for and wrote the Datsets section of the report, explained datset features to the team, wrote code to load two datasets, and contributed to the literature review. Jonny wrote code to process and load datasets, reformatted and modularized Eric's original code so it worked for all the datasets, handled experimenting and training the models, and wrote the Experimental Analysis and Summary and Future Work section of the report.
 
 \section{Works cited}
 

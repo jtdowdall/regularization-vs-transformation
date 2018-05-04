@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.2.17)  4 MAY 2018 06:23
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.2.17)  4 MAY 2018 06:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -638,7 +638,11 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 .................................................
 LaTeX Info: Redefining \rmfamily on input line 23.
 
-(./final_report.aux)
+(./final_report.aux
+
+LaTeX Warning: Label `overflow' multiply defined.
+
+)
 \openout1 = `final_report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
@@ -725,6 +729,7 @@ LaTeX Font Info:    Try loading font information for U+msa on input line 52.
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 52.
+
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -739,9 +744,9 @@ File: largeMarginPrinciple2.jpg Graphic file (type QTm)
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[10] [11] [12] [13] (./final_report.aux)
+[10] [11] [12] [13] [14] (./final_report.aux)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
@@ -753,4 +758,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  53i,15n,92p,10371b,409s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on final_report.pdf (13 pages).
+Output written on final_report.pdf (14 pages).
