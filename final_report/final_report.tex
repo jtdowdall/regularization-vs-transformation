@@ -224,6 +224,17 @@ The following table summarizes the combinations of model fitting strategies and 
 \section{Datasets}
 
 \section{Experimental analysis}
+\begin{center}
+  \begin{tabular}{r|c c c c c}
+     Model & Breast Cancer & MNIST & Leukemia & Letters & Wilt \\
+     \hline
+      Logistic Regression $\ell_1$ & 0.0351 & 0.0133 & 0.0000 & 0.0146 & 0.3080 \\
+      Logistic Regression $\ell_2$ & 0.0351 & 0.0127 & 0.0178 & 0.0146 & 0.3080 \\
+      Logistic Regression RBF      & 0.0351 & 0.0057 & 0.0294 & 0.0113 & 0.1340 \\
+      SVM RBF                      & 0.0236 & 0.0038 & 0.0294 & 0.0049 & 0.1440 \\
+      SVM Linear                   & 0.0439 & 0.0144 & 0.0294 & 0.0243 & 0.2960 \\
+\end{tabular}
+\end{center}
 
 \section{Findings}
 
