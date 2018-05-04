@@ -389,6 +389,25 @@ The following table shows the number of training samples in each class (A or B),
 \end{table}
 
 \section{Experimental analysis}
+All models were evaluated on each of the five datasets discussed. 
+
+To choose the $\gamma$ function of the RBF kernel (where $\gamma = 1/(2\sigma^2)$) we follow the heuristic choice mentioned in (Gretton et al. 2012, 748) of setting $\sigma$ to equal the median distance between points of the training data.
+
+We performed grid-search to determine the optimal C margin value for the SVM models (Hsu et al. 2016, 5). Specifically, we performed 5-fold cross-validation over the 1D space $\gamma \in {0.01, 0, 100, 1000}$ to select the best value for each individual model. 
+
+A value of $\lambda=1$ was used for regularization. Since ther
+
+\begin{center}
+  \begin{tabular}{r|c c c c c}
+     SVM Kernel & Breast Cancer & MNIST & Leukemia & Letters & Wilt \\
+     \hline
+      RBF  & 100 & 100 & 100 & 100 & 100 \\
+      Linear & 0.01 & 0.01 & 0.01 & 0.01 & 100 \\
+      \caption{The C values chosen from the cross-validation grid-search for SVM models.}
+\end{tabular}
+\end{center}
+
+
 \begin{center}
   \begin{tabular}{r|c c c c c}
      Model & Breast Cancer & MNIST & Leukemia & Letters & Wilt \\
@@ -398,9 +417,9 @@ The following table shows the number of training samples in each class (A or B),
       Logistic Regression RBF      & 0.0351 & 0.0057 & 0.0294 & 0.0113 & 0.1340 \\
       SVM RBF                      & 0.0236 & 0.0038 & 0.0294 & 0.0049 & 0.1440 \\
       SVM Linear                   & 0.0439 & 0.0144 & 0.0294 & 0.0243 & 0.2960 \\
+      \caption{Experimental results of testing the five models on the five datasets.}
 \end{tabular}
 \end{center}
-
 \section{Findings}
 
 
