@@ -397,18 +397,19 @@ We performed grid-search to determine the optimal C margin value for the SVM mod
 
 A value of $\lambda=1$ was used for regularization. Since ther
 
-\begin{center}
+\begin{table}[h]
+  \centering
   \begin{tabular}{r|c c c c c}
      SVM Kernel & Breast Cancer & MNIST & Leukemia & Letters & Wilt \\
      \hline
       RBF  & 100 & 100 & 100 & 100 & 100 \\
       Linear & 0.01 & 0.01 & 0.01 & 0.01 & 100 \\
-      \caption{The C values chosen from the cross-validation grid-search for SVM models.}
 \end{tabular}
-\end{center}
+      \caption{The C values chosen from the cross-validation grid-search for SVM models.}
+\end{table}
 
-
-\begin{center}
+\begin{table}[h]
+  \centering
   \begin{tabular}{r|c c c c c}
      Model & Breast Cancer & MNIST & Leukemia & Letters & Wilt \\
      \hline
@@ -417,9 +418,10 @@ A value of $\lambda=1$ was used for regularization. Since ther
       Logistic Regression RBF      & 0.0351 & 0.0057 & 0.0294 & 0.0113 & 0.1340 \\
       SVM RBF                      & 0.0236 & 0.0038 & 0.0294 & 0.0049 & 0.1440 \\
       SVM Linear                   & 0.0439 & 0.0144 & 0.0294 & 0.0243 & 0.2960 \\
-      \caption{Experimental results of testing the five models on the five datasets.}
 \end{tabular}
-\end{center}
+      \caption{Experimental results of testing the five models on the five datasets.}
+\end{table}
+
 \section{Findings}
 
 
