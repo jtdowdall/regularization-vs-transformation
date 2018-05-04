@@ -1,4 +1,4 @@
-\documentclass[letterpaper, 12pt]{article}
+\documentclass[letterpaper, 11pt]{article}
 %\setcounter{secnumdepth}{0}
 \usepackage{fontspec}
 \usepackage{ctable}
@@ -46,7 +46,7 @@
 
 \renewcommand{\arraystretch}{1.1}
 
-\title{Regularization and transformation:\\CSE802 Final Project}
+\title{Regularization and transformation:\\CSE802 Project}
 \author{Jonny Dowdall, James Peterkin II, Eric Alan Wayman}
 \date{Submitted May 4, 2018}
 \maketitle
@@ -55,7 +55,23 @@
 
 \subsection{Motivation}
 
+The fact that the performance of classifiers can be improved through methods that 1) impose some form of regularization on the estimated parameters, or 2) exploit useful transformations of the feature space, suggests that understanding of the intracies and interrelationships between these techniques is an important part of any practitioner's toolbox in the field of pattern recognition and machine learning. Our project seeks to build such an understanding and to test that understanding against the application of the techniques to real-world datasets.
+
+The basic idea of regularization is that when fitted to a particular training data set models may learn the idiosyncracies of that data set and that will be reflected in poorer performance on an unseen test data set compared to the performance of the average of a series of models fit to various training sets. Regularization simulates this procedure by restricting the 
+
+TODO Add overfitting/underfitting, regularization, transformation explanations.
+
 \subsection{Literature review}
+
+Regularization was first proposed by Tychonoff (Theodoridis 2015, 72) in 1977 (Tychonoff and Arsenin 1977). $\ell_1$ and $\ell_2$ regularization are common techniques described in many machine learning textbooks, for example Murphy 2015.
+
+Logistic regression, the first of the two classifiers that were used in this project, was invented by David Cox in 1958 (Cox 1958).
+
+According to Wikipedia, kernel classifiers were likely first mentioned in the 1960s (Aizerman et al. 1964) and gained widespread attention due to the introduction of the support vector machine (SVM) in the 1990s due to the SVM's competitive performance on tasks such as handwriting recognition. This SVM, which uses the ``kernel trick'' to be described below was invented by Boser et al. in 1992 (Boser et. al 1992).
+
+The usage of kernels with logistic regression is demonstrated in Zhu and Hastie (2002).
+
+The techniques explained and used in this project are widely used in pattern classification (for example see).
 
 \subsection{Problem statement}
 
@@ -187,7 +203,7 @@ The SVM is used in this project with both the linear and RBF kernels.
 
 Logistic regression was explained above. In this section we explain the effects of using logistic regression on data that has been transformed with the RBF kernel, and how this relates to the case where an SVM is used with such transformed data.
 
-The optimal $f(\vect{x})$ in fitting an SVM is of the form $f(\vect{x}) = \sum_{i=1}^{n} \alpha_i K(\vect{x}, \vect{x}_i^\prime)$ (Zhu and Hastie, p.2). Also since the negative log-likelihood (NLL) for logistic regression has a similar shape to the NLL of the SVM, replacing the NLL of the SVM with the NLL of the logistic regression gives roughly the same solution (Zhu and Hastie, 2). Then for a Mercer kernel, the interpretation of the probability $p(\vect{x})$ (which equals $P(y = 1 | \vect{X} = \vect{x})$, Lin 2002) is
+The optimal $f(\vect{x})$ in fitting an SVM is of the form $f(\vect{x}) = \sum_{i=1}^{n} \alpha_i K(\vect{x}, \vect{x}_i^\prime)$ (Zhu and Hastie 2002, 186). Also since the negative log-likelihood (NLL) for logistic regression has a similar shape to the NLL of the SVM, replacing the NLL of the SVM with the NLL of the logistic regression gives roughly the same solution (Zhu and Hastie 2002, 186). Then for a Mercer kernel, the interpretation of the probability $p(\vect{x})$ (which equals $P(y = 1 | \vect{X} = \vect{x})$, Lin 2002) is
 
 \begin{align*}
   p(\vect{x}) & = \frac{e^{f(\vect{x})}}{1 + e^{f(\vect{x})}} = \frac{1}{1 + \exp({-f(\vect{x})})} & \\
@@ -228,13 +244,13 @@ The following table summarizes the combinations of model fitting strategies and 
 
 \section{Summary and future work}
 
-\section{References}
+\section{Works cited}
 
 Abu-Mostafa, Malik Magdon-Ismail and Hsuan-Tien Lin. 2012. \emph{Learning with data}, e-Chapter 8 (``Support vector machines'') AMLBook.
 
 Guestrin, Carlos. 2007. ``Support vector machines.'' Lecture slides for ``Machine Learning – 10701/15781`` at Carnegie Mellon University. 
 
-Lin, Yi. 2002. ``Support vector machines and the Bayes rule in classification.'' Data Mining and Knowledge Discovery (6): 259–275.
+Lin, Yi. 2002. ``Support vector machines and the Bayes rule in classification.'' \emph{Data Mining and Knowledge Discovery} (6): 259–275.
 
 Murphy, Kevin. 2012. \emph{Machine learning: a probabilistic perspective}. MIT Press: Cambridge, MA.
 
@@ -242,6 +258,17 @@ Theodoridis, Sergios and Konstantinos Koutroumbas. 2009. \emph{Pattern recogniti
 
 Theodoridis, Sergios. 2015. \emph{Machine learning: a Bayesian and optimization perspective}. Academic Press: London, United Kingdom.
 
-Zhu, Ji and Trevor Hastie. 2004. ``Kernel logistic regression and the import vector machine.'' Preprint.
+Zhu, Ji and Trevor Hastie. 2004. ``Kernel logistic regression and the import vector machine.'' \emph{Journal of Computational and Graphical Statistics}.  
+Volume 14, 2005 - Issue 1.
+
+\section{References cited in literature review}
+
+Aizerman, M. A., Emmanuel M. Braverman and Rozoner, L. I. 1964. "Theoretical foundations of the potential function method in pattern recognition learning". \emph{Automation and Remote Control}. 25: 821–837.
+
+Boser, Bernhard E., Isabelle M. Guyon and Vladimir N. Vapnik. 1992. "A training algorithm for optimal margin classifiers". \emph{Proceedings of the fifth annual workshop on Computational learning theory – COLT '92}. p. 144.
+
+Cox, DR. 1958. "The regression analysis of binary sequences (with discussion)". \emph{J Roy Stat Soc B}. 20: 215–242.
+
+Tychonoff, A.N. and V.Y. Arsenin. \emph{Solution of ill-posed problems}. Winston \& Sons: Washington, 1977.
 
 \end{document}
