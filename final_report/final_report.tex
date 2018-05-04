@@ -1,4 +1,4 @@
-\documentclass[letterpaper, 12pt]{article}
+\documentclass[letterpaper, 11pt]{article}
 %\setcounter{secnumdepth}{0}
 \usepackage{fontspec}
 \usepackage{ctable}
@@ -46,7 +46,7 @@
 
 \renewcommand{\arraystretch}{1.1}
 
-\title{Regularization and transformation:\\CSE802 Final Project}
+\title{Regularization and transformation:\\CSE802 Project}
 \author{Jonny Dowdall, James Peterkin II, Eric Alan Wayman}
 \date{Submitted May 4, 2018}
 \maketitle
@@ -55,9 +55,35 @@
 
 \subsection{Motivation}
 
+The fact that the performance of classifiers can be improved through methods that 1) impose some form of regularization on the estimated parameters, or 2) exploit useful transformations of the feature space, suggests that understanding of the intracies and interrelationships between these techniques is an important part of any practitioner's toolbox in the field of pattern recognition and machine learning. Our project seeks to build such an understanding and to test that understanding against the application of the techniques to real-world datasets.
+
+The basic idea of regularization is that when fitted to a particular training data set models may learn the idiosyncracies of that data set (overfitting) and that will be reflected in poorer performance on an unseen test data set compared to the performance of the average of a series of models fit to various training sets. Regularization simulates this procedure by restricting the magnitude of components of the parameter vector, forcing the fitted model to be more ``smooth'' than if the parameter vector were unrestricted. Overfitting can also be addressed through sparsity-encouraging regularization ($\ell_1$ regularization, which increases the ``signal to noise ratio'' by encouraging the parameter coefficients of features that do not contribute to reducing model error to go to zero). 
+
+Underfitting occurs when the model is too simple for the data. Since the models in this project produce linear decision boundaries, this will occur when features are not linearly separable in the original feature space. Transforming the data to a higher-dimensional feature space, in this project demonstrated by the use of the RBF kernel, may allow the data to become linearly separable in that feature space. Through the use of the kernel trick, the model can be fit in the higher-dimensional space through performing calculations in the original feature space, and the resulting decision boundary visualized in the original feature space.
+
+Overfitting can also be addressed through fitting the data using a subset of the training points, and by choosing a linear boundary that separates the data points with as large a ``margin'', or distance from the closest points to the boundary, as possible. Both of these qualities are characteristics of the Support Vector Machine (SVM).
+
+Another classifier, logistic regression, can be used in conjunction with the $\ell_1$ and $\ell_2$ norms for regularization, as well as with transformed data (kernelized logistic regression). The details of all these techniques will be explained in sections to follow.
+
 \subsection{Literature review}
 
+Regularization was first proposed by Tychonoff (Theodoridis 2015, 72) in 1977 (Tychonoff and Arsenin 1977). $\ell_1$ and $\ell_2$ regularization are common techniques described in many machine learning textbooks, for example Murphy 2015.
+
+Logistic regression, the first of the two classifiers that were used in this project, was invented by David Cox in 1958 (Cox 1958).
+
+According to Wikipedia, kernel classifiers were likely first mentioned in the 1960s (Aizerman et al. 1964) and gained widespread attention due to the introduction of the support vector machine (SVM) in the 1990s due to the SVM's competitive performance on tasks such as handwriting recognition. This SVM, which uses the ``kernel trick'' to be described below was invented by Boser et al. in 1992 (Boser et. al 1992).
+
+The usage of kernels with logistic regression is demonstrated in Zhu and Hastie (2002).
+
+The techniques explained and used in this project are widely used in pattern classification (for example see).
+
 \subsection{Problem statement}
+
+To explain how techniques of regularization and data transformation can be used in conjunction with the binary classifers logistic regression and SVM, use this understanding to hypothesize regarding the performance of the various techniques on datasets with differing characteristics, and test these hypotheses on real-world datsets. Our hypotheses are as follows:
+
+On datasets which are linearly separable, if most of the features are useful towards classification we expect logistic regression with $\ell_2$ regularization and SVM with a linear kernel to perform well. If only a few of the features are useful towards classification on such a dataset, we expect logistic regression with $\ell_1$ regularization to perform better.
+
+On datasets which are not linearly separable, if most of the features are useful towards classification we expect the SVM with an RBF kernel to perform well. If only a few of the features are useful towards classification on such a dataset, we expect logistic regression with an RBF kernel to perform better.
 
 \section{Approach}
 
@@ -188,7 +214,7 @@ The SVM is used in this project with both the linear and RBF kernels.
 
 In this section, we explain the effects of using logistic regression on data that has been transformed with the RBF kernel, and how this relates to the case where an SVM is used with such transformed data.
 
-The optimal $f(\vect{x})$ in fitting an SVM is of the form $f(\vect{x}) = \sum_{i=1}^{n} \alpha_i K(\vect{x}, \vect{x}_i^\prime)$ (Zhu and Hastie, p.2). Also since the negative log-likelihood (NLL) for logistic regression has a similar shape to the NLL of the SVM, replacing the NLL of the SVM with the NLL of the logistic regression gives roughly the same solution (Zhu and Hastie, 2). Then for a Mercer kernel, the interpretation of the probability $p(\vect{x})$ (which equals $P(y = 1 | \vect{X} = \vect{x})$, Lin 2002) is
+The optimal $f(\vect{x})$ in fitting an SVM is of the form $f(\vect{x}) = \sum_{i=1}^{n} \alpha_i K(\vect{x}, \vect{x}_i^\prime)$ (Zhu and Hastie 2002, 186). Also since the negative log-likelihood (NLL) for logistic regression has a similar shape to the NLL of the SVM, replacing the NLL of the SVM with the NLL of the logistic regression gives roughly the same solution (Zhu and Hastie 2002, 186). Then for a Mercer kernel, the interpretation of the probability $p(\vect{x})$ (which equals $P(y = 1 | \vect{X} = \vect{x})$, Lin 2002) is
 
 \begin{align*}
   p(\vect{x}) & = \frac{e^{f(\vect{x})}}{1 + e^{f(\vect{x})}} = \frac{1}{1 + \exp({-f(\vect{x})})} & \\
@@ -240,13 +266,17 @@ The following table summarizes the combinations of model fitting strategies and 
 
 \section{Summary and future work}
 
-\section{References}
+\section{Works cited}
 
 Abu-Mostafa, Malik Magdon-Ismail and Hsuan-Tien Lin. 2012. \emph{Learning with data}, e-Chapter 8 (``Support vector machines'') AMLBook.
 
+Gretton, Arthur et al. 2012. "A Kernel Two-Sample Test." Journal of Machine Learning Research. Vol 13, p. 723-773.
+
 Guestrin, Carlos. 2007. ``Support vector machines.'' Lecture slides for ``Machine Learning – 10701/15781`` at Carnegie Mellon University. 
 
-Lin, Yi. 2002. ``Support vector machines and the Bayes rule in classification.'' Data Mining and Knowledge Discovery (6): 259–275.
+Hsu, Chih-Wei et al. 2016. "A Practical Guide to Support Vector Classification." Department of Computer Science, National Taiwan University.
+
+Lin, Yi. 2002. ``Support vector machines and the Bayes rule in classification.'' \emph{Data Mining and Knowledge Discovery} (6): 259–275.
 
 Murphy, Kevin. 2012. \emph{Machine learning: a probabilistic perspective}. MIT Press: Cambridge, MA.
 
@@ -254,6 +284,17 @@ Theodoridis, Sergios and Konstantinos Koutroumbas. 2009. \emph{Pattern recogniti
 
 Theodoridis, Sergios. 2015. \emph{Machine learning: a Bayesian and optimization perspective}. Academic Press: London, United Kingdom.
 
-Zhu, Ji and Trevor Hastie. 2004. ``Kernel logistic regression and the import vector machine.'' Preprint.
+Zhu, Ji and Trevor Hastie. 2004. ``Kernel logistic regression and the import vector machine.'' \emph{Journal of Computational and Graphical Statistics}.  
+Volume 14, 2005 - Issue 1.
+
+\section{References cited in literature review}
+
+Aizerman, M. A., Emmanuel M. Braverman and Rozoner, L. I. 1964. "Theoretical foundations of the potential function method in pattern recognition learning". \emph{Automation and Remote Control}. 25: 821–837.
+
+Boser, Bernhard E., Isabelle M. Guyon and Vladimir N. Vapnik. 1992. "A training algorithm for optimal margin classifiers". \emph{Proceedings of the fifth annual workshop on Computational learning theory – COLT '92}. p. 144.
+
+Cox, DR. 1958. "The regression analysis of binary sequences (with discussion)". \emph{J Roy Stat Soc B}. 20: 215–242.
+
+Tychonoff, A.N. and V.Y. Arsenin. \emph{Solution of ill-posed problems}. Winston \& Sons: Washington, 1977.
 
 \end{document}

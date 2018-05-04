@@ -1,0 +1,171 @@
+\documentclass[12pt]{article}
+
+\begin{document}
+
+\section{Datasets}
+\subsection{Wilt Dataset}
+\begin{itemize}
+    \item “In this study, we developed a new method for detecting diseased pine and oak trees in high-resolution multispectral satellite imagery. First, the imagery was pansharpened using an intensity–hue–saturation (IHS) pansharpening approach because it has been found to lead to accurate image segmentations in previous research (Johnson, Tateishi, and Hoan 2012). Next, we adopted a multiscale OBIA approach (Johnson 2013) to incorporate preliminary support vector machine (SVM) classification results (class assignments and posterior probabilities) from many segmentation levels into a final land cover classification. The land cover types of interest, diseased pine and oak trees, were sparse compared with the other land cover in the study area, so collecting training data for this class was more difficult and time consuming. As a result, we had a highly imbalanced training data set, with training data for the target class comprising only 1.7\% of the total training set. Highly imbalanced training data sets have been shown to result in lower classification accuracy for the minority class (Solberg and Solberg 1996), so prior to SVM classification we used the Synthetic Minority Over-sampling Technique (SMOTE, Chawla et al. 2002) to artificially oversample the minority class. Finally, since IHS pansharpening results in spectral distortion, we tested the effect of replacing the IHS spectral information of image segments with (i) the original multispectral information and (ii) the spectral information from another pansharpening algorithm, Smoothing Filter-based Intensity Modulation (SFIM; Liu 2000), which preserves spectral information better than IHS pansharpening. Our main findings were that (1) the use of a multiscale OBIA approach outperformed the single-scale OBIA approach; (2) performing SMOTE prior to image classification led to higher classification accuracy; and (3) replacing IHS spectral information with the original multispectral or SFIM spectral information also resulted in higher classification accuracy.” – (B.A. Johnson et al. 2013, 2)
+    \item Features (6 total, 5 features, 1 class per sample):
+    \begin{itemize}
+        \item class: 'w' (diseased trees), 'n' (all other land cover)
+        \item GLCM_Pan: GLCM mean texture (Pan band)
+        \item Mean_G: Mean green value
+        \item Mean_R: Mean red value
+        \item Mean_NIR: Mean NIR value
+        \item SD_Pan: Standard deviation (Pan band)
+    \end{itemize}
+    \item Number of classes: 2
+    \item Number of samples:
+    \begin{itemize}
+        \item Training set: 4339
+        \item Testing set: 500
+    \end{itemize}
+\end{itemize}
+
+\subsection{Letter Dataset}
+\begin{enumerate}
+    \item Letter Image Recognition Data
+    \item Source Information
+    \begin{itemize}
+        \item Creator: David J. Slate
+        \item Odesta Corporation; 1890 Maple Ave; Suite 115; Evanston, IL 60201
+        \item Donor: David J. Slate (dave@math.nwu.edu) (708) 491-3867
+        \item Date: January, 1991
+    \end{itemize}
+    \item Past Usage:
+    \begin{itemize}
+        \item P.W. Frey and D. J. Slate (Machine Learning Vol 6 #2 March 91):
+        \begin{itemize}
+            \item "Letter Recognition Using Holland-style Adaptive Classifiers".
+        \end{itemize}
+        \item The research for this article investigated the ability of several variations of Holland-style adaptive classifier systems to learn to correctly guess the letter categories associated with vectors of 16 integer attributes extracted from raster scan images of the letters. The best accuracy obtained was a little over 80\%. It would be interesting to see how ell other methods do with the same data.
+    \end{itemize}
+    \item Relevant Information:
+    \begin{itemize}
+        \item The objective is to identify each of a large number of black-and-white rectangular pixel displays as one of the 26 capital letters in the English alphabet.  The character images were based on 20 different fonts and each letter within these 20 fonts was randomly distorted to produce a file of 20,000 unique stimuli.  Each stimulus was converted into 16 primitive numerical attributes (statistical moments and edge counts) which were then scaled to fit into a range of integer values from 0 through 15.  We typically train on the first 16000 items and then use the resulting model to predict the letter category for the remaining 4000.  See the article cited above for more details.
+    \end{itemize}
+    \item Number of instances: 20000.
+    \begin{itemize}
+        \item However, we only used 1543 since we are testing binary classifiers and we chose the letters E and F, whose counts are listed below.
+    \end{itemize}
+    \item Number of Attributes: 17 (Letter category and 16 numeric features)
+    \item Attribute Information:
+    \begin{itemize}
+        \item lettr	capital letter	(26 values from A to Z)
+        \item x-box	horizontal position of box	  (integer)
+        \item y-box	vertical position of box	  (integer)
+        \item width	width of box			      (integer)
+        \item high 	height of box			      (integer)
+        \item onpix	total # on pixels		      (integer)
+        \item x-bar	mean x of on pixels in box	  (integer)
+        \item y-bar	mean y of on pixels in box	  (integer)
+        \item x2bar	mean x variance			      (integer)
+        \item y2bar	mean y variance			      (integer)
+        \item xybar	mean x y correlation		  (integer)
+        \item x2ybr	mean of x * x * y		      (integer)
+        \item xy2br	mean of x * y * y		      (integer)
+        \item x-ege	mean edge count left to right (integer)
+        \item xegvy	correlation of x-ege with y	  (integer)
+        \item y-ege	mean edge count bottom to top (integer)
+        \item yegvx	correlation of y-ege with x	  (integer)
+    \end{itemize}
+    \item Missing Attribute Values: None
+    \item Class Distribution:
+    \begin{itemize}
+        \item 789-A 766-B 736-C 805-D \emph{768-E} \emph{775-F} 773-G
+        \item 734-H 755-I 747-J 739-K 761-L 792-M 783-N
+        \item 753-O 803-P 783-Q 758-R 748-S 796-T 813-U
+        \item 764-V 752-W 787-X 786-Y 734-Z
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Breast Cancer Dataset}
+\begin{enumerate}
+    \item Wisconsin Diagnostic Breast Cancer (WDBC)
+    \item Source Information
+    \begin{itemize}
+        \item Creators:
+        \begin{itemize}
+            \item Dr. William H. Wolberg, General Surgery Dept., University of Wisconsin,  Clinical Sciences Center, Madison, WI 53792. wolberg@eagle.surgery.wisc.edu
+            \item W. Nick Street, Computer Sciences Dept., University of Wisconsin, 1210 West Dayton St., Madison, WI 53706. street@cs.wisc.edu  608-262-6619
+            \item Olvi L. Mangasarian, Computer Sciences Dept., University of Wisconsin, 1210 West Dayton St., Madison, WI 53706. olvi@cs.wisc.edu
+        \end{itemize}
+        \item Donor: Nick Street
+        \item Date: November 1995
+    \end{itemize}
+    \item Past Usage:
+    \begin{itemize}
+        \item First usage:
+        \begin{itemize}
+            \item W.N. Street, W.H. Wolberg and O.L. Mangasarian Nuclear feature extraction for breast tumor diagnosis. IS&T/SPIE 1993 International Symposium on Electronic Imaging: Science and Technology, volume 1905, pages 861-870, San Jose, CA, 1993.
+        \end{itemize}
+        \item OR literature:
+        \begin{itemize}
+            \item O.L. Mangasarian, W.N. Street and W.H. Wolberg. Breast cancer diagnosis and prognosis via linear programming. Operations Research, 43(4), pages 570-577, July-August 1995.
+        \end{itemize}
+        \item Medical literature:
+        \begin{itemize}
+            \item W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Machine learning techniques to diagnose breast cancer from fine-needle aspirates. Cancer Letters 77 (1994) 163-171.
+            \item W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Image analysis and machine learning applied to breast cancer diagnosis and prognosis. Analytical and Quantitative Cytology and Histology, Vol. 17 No. 2, pages 77-87, April 1995.
+            \item W.H. Wolberg, W.N. Street, D.M. Heisey, and O.L. Mangasarian. Computerized breast cancer diagnosis and prognosis from fine needle aspirates. Archives of Surgery 1995;130:511-516.
+            \item W.H. Wolberg, W.N. Street, D.M. Heisey, and O.L. Mangasarian. Computer-derived nuclear features distinguish malignant from benign breast cytology. Human Pathology, 26:792--796, 1995.
+        \end{itemize}
+        \item See also:
+        \begin{itemize}
+            \item http://www.cs.wisc.edu/~olvi/uwmp/mpml.html
+            \item http://www.cs.wisc.edu/~olvi/uwmp/cancer.html
+        \end{itemize}
+        \item Results:
+        \begin{itemize}
+            \item predicting field 2, diagnosis: B = benign, M = malignant
+            \item sets are linearly separable using all 30 input features
+            \item best predictive accuracy obtained using one separating plane in the 3-D space of Worst Area, Worst Smoothness and Mean Texture.  Estimated accuracy 97.5\% using repeated 10-fold crossvalidations.  Classifier has correctly diagnosed 176 consecutive new patients as of November 1995.
+        \end{itemize}
+    \end{itemize}
+    \item Relevant information
+    \begin{itemize}
+        \item Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.  They describe characteristics of the cell nuclei present in the image. A few of the images can be found at http://www.cs.wisc.edu/~street/images/
+        \item Separating plane described above was obtained using Multisurface Method-Tree (MSM-T) [K. P. Bennett, "Decision Tree Construction Via Linear Programming." Proceedings of the 4th Midwest Artificial Intelligence and Cognitive Science Society, pp. 97-101, 1992], a classification method which uses linear programming to construct a decision tree.  Relevant features were selected using an exhaustive search in the space of 1-4 features and 1-3 separating planes.
+        \item The actual linear program used to obtain the separating plane in the 3-dimensional space is that described in: [K. P. Bennett and O. L. Mangasarian: "Robust Linear Programming Discrimination of Two Linearly Inseparable Sets", Optimization Methods and Software 1, 1992, 23-34].
+        \item This database is also available through the UW CS ftp server:
+        \begin{itemize}
+            \item ftp ftp.cs.wisc.edu
+            \item cd math-prog/cpo-dataset/machine-learn/WDBC/
+        \end{itemize}
+    \end{itemize}
+    \item Number of instances: 569
+    \item Number of attributes: 32 (ID, diagnosis, 30 real-valued input features)
+    \item Attribute information
+    \begin{enumerate}
+        \item ID number
+        \item Diagnosis (M = malignant, B = benign)
+        \item 3-32)
+        \begin{itemize}
+            \item Ten real-valued features are computed for each cell nucleus:
+            \begin{itemize}
+                \item radius (mean of distances from center to points on the perimeter)
+                \item texture (standard deviation of gray-scale values)
+                \item perimeter
+                \item area
+                \item smoothness (local variation in radius lengths)
+                \item compactness (perimeter^2 / area - 1.0)
+                \item concavity (severity of concave portions of the contour)
+                \item concave points (number of concave portions of the contour)
+                \item symmetry 
+                \item fractal dimension ("coastline approximation" - 1)
+            \end{itemize}
+            \item Several of the papers listed above contain detailed descriptions of how these features are computed.
+            \item The mean, standard error, and "worst" or largest (mean of the three largest values) of these features were computed for each image, resulting in 30 features.  For instance, field 3 is Mean Radius, field 13 is Radius SE, field 23 is Worst Radius.
+            \item All feature values are recoded with four significant digits.
+        \end{itemize}
+        \item Missing attribute values: none
+        \item Class distribution: 357 benign, 212 malignant
+    \end{enumerate}
+\end{enumerate}
+
+\section{References}
+Brian Alan Johnson, Ryutaro Tateishi and Nguyen Thanh Hoan. 2013. "A hybrid pansharpening approach and multiscale object-based image analysis for mapping diseased pine and oak trees" International Journal of Remote Sensing, 34:20, 6969-6982. https://doi.org/10.1080/01431161.2013.810825
+P. W. Frey and D. J. Slate. 1991. "Letter Recognition Using Holland-style Adaptive Classifiers". Machine Learning Vol 6 \#2. https://link.springer.com/article/10.1007/BF00114162
+
+\end{document}
