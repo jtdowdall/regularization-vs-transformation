@@ -75,7 +75,7 @@ According to Wikipedia, kernel classifiers were likely first mentioned in the 19
 
 The usage of kernels with logistic regression is demonstrated in Zhu and Hastie (2002).
 
-The techniques explained and used in this project are widely used in pattern classification (for example see).
+The techniques explained and used in this project are widely used in pattern classification, and the exploration of their properties has been the subject of much research. Some examples of SVMs are described in Abe (2010). Keerthi et al. (2003) describe the performance of SVMs as the hyperparameter values become very large and very small. Lee et al. (2006) describe an efficient algorithm for fitting logistic regression with $\ell_1$ regularization. Liu et al. (2011) propose an estimation procedure for the SVM with RBF kernel.
 
 \subsection{Problem statement}
 
@@ -422,7 +422,7 @@ We built our models using the scikit-learn package with Python. The linear regre
       SVM RBF                      & 0.0236 & 0.0038 & 0.0294 & 0.0049 & 0.1440 \\
       SVM Linear                   & 0.0439 & 0.0144 & 0.0294 & 0.0243 & 0.2960 \\
 \end{tabular}
-      \caption{Experimental results of testing the five models on the five datasets.}
+      \caption{Empirical error when testing the five models on the five datasets.}
 \end{table}
 
 \section{Findings}
@@ -472,11 +472,19 @@ Volume 14, 2005 - Issue 1.
 
 \subsection{Works cited in literature review}
 
+Abe S. 2010 "Two-Class Support Vector Machines". In \emph{Support Vector Machines for Pattern Classification. Advances in Pattern Recognition}. Springer, London.
+
 Aizerman, M. A., Emmanuel M. Braverman and Rozoner, L. I. 1964. "Theoretical Foundations of the Potential Function Method in Pattern Recognition Learning". \emph{Automation and Remote Control}. 25: 821–837.
 
 Boser, Bernhard E., Isabelle M. Guyon and Vladimir N. Vapnik. 1992. "A Training Algorithm for Optimal Margin Classifiers". \emph{Proceedings of the fifth annual workshop on Computational learning theory – COLT '92}. p. 144.
 
 Cox, DR. 1958. "The regression analysis of binary sequences (with discussion)". \emph{J Roy Stat Soc B}. 20: 215–242.
+
+Keerthi, S. Sathiya and Lin, Chih-Jen. 2003. "Asymptotic Behaviors of Support Vector Machines with Gaussian Kernel". Journal on Neural Computation. http://dx.doi.org/10.1162/089976603321891855
+
+S.I. Lee, H. Lee, P. Abbeel, and A. Y. Ng. 2006. "Efficient L1 Regularized Logistic Regression". AAAI. https://www.aaai.org/Papers/AAAI/2006/AAAI06-064.pdf
+
+Liu, Q., Chen, C., Zhang, Y. et al. 2011. ``Feature Selection for Support Vector Machines with RBF Kernel.'' \emph{Artif Intell Rev} 36: 99. https://doi.org/10.1007/s10462-011-9205-2
 
 Tychonoff, A.N. and V.Y. Arsenin. \emph{Solution of ill-posed problems}. Winston \& Sons: Washington, 1977.
 

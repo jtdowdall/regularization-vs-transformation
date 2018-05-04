@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.2.17)  4 MAY 2018 06:59
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016/Debian) (preloaded format=xelatex 2018.2.17)  4 MAY 2018 07:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -740,11 +740,7 @@ File: figure1.jpg Graphic file (type QTm)
 <use  "figure1.jpg" > [3] [4] [5]
 File: largeMarginPrinciple2.jpg Graphic file (type QTm)
  <use  "largeMarginPrinciple2.jpg" > [6]
-[7] [8] [9]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[10] [11] [12] [13] [14] (./final_report.aux)
+[7] [8] [9] [10] [11] [12] [13] [14] (./final_report.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
